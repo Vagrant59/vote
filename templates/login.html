@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/Normalize.css">
+    <link rel="stylesheet" href="../static/css/login.css">
+</head>
+<body>
+    <div id="container" class="w">
+        <div class="container">
+            <form action="/login/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="backurl" value="{{ backurl }}">
+                <img id="img1" src="../static/images/logo_03.png" Width="90">
+                <h1>用户登录</h1>
+                <fieldset>
+                    <legend>用户名</legend>
+                    <input type="text" name="username">
+                </fieldset>
+                <fieldset>
+                    <legend>密码</legend>
+                    <input type="password" name="password">
+                </fieldset>
+                <fieldset>
+                    <legend>验证码</legend>
+                    <input type="text" name="captcha" id="check_info1">
+                </fieldset>
+                <div class="verificationcode clearfix">
+                    <img src="/captcha/" alt="" id="code" class="fl">
+                </div>
+                <div class="hintc clearfix">
+                    <p class="hint fl">{{ hint }}</p>
+                </div>
+                <div class="login threebutton clearfix">
+                    <a class="fl" href="/">返回首页</a>
+                    <a class="fl" href="/register/">注册</a>
+                    <button class="fr">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        let codeImage = document.querySelector('#code')
+        codeImage.addEventListener('click', (evt) => {
+            evt.target.src = '/captcha/?' + Math.random()
+        })
+    </script>
+</body>
+</html>

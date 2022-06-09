@@ -1,0 +1,39 @@
+body{
+    width: 60%;
+    margin: auto;
+}
+#container {
+    width: 60%;
+    margin: 10px auto;
+}
+.user {
+    float: right;
+    margin-top: 10px;
+}
+.user a {
+    color: #1a73e8;
+    font-size: 20px;
+    padding-right: 10px;
+}
+.user a:hover {
+    color: #093759;
+}
+#main>dl {
+    margin-bottom: 10px;
+}
+#main>dl>dt {
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+}
+#main>dl>dt a {
+    color: #1a73e8;
+    font-size: 24px;
+}
+#main>dl>dt a:hover {
+    color: #093759;
+}
+#main>dl>dd {
+    font-size: 1em;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>老师信息</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/Normalize.css">
+    <link rel="stylesheet" href="../static/css/teacher.css">
+</head>
+<body>
+    <div id="container">
+        <div class="po">
+            <div class="user">
+                {% if request.session.userid %}
+                    {{ request.session.username }}
+                    <a href="/logout/">注销</a>
+                {% else %}
+                    <a href="/login/">用户登录</a>
+                {% endif %}
+                <a href=/register/>快速注册</a>
+            </div>
+            <h1>{{ subject.name }}学科的老师信息</h1>
+            <hr>
+        </div>
+
+        {% if not teachers %}
+            <h2>暂无该学科老师信息</h2>
+        {% endif %}
+
+        {% for teacher in teachers %}
+        <div class="teacher">
+            <div class="photo">
+                <img src="../{{ teacher.photo }}" height="140" alt="">
+            </div>
+            <div class="info">
+                <div>
+                    <span><strong>姓名：{{ teacher.name }}</strong></span>
+                    <span><strong>性别：{{ teacher.sex | yesno:'男,女' }}</strong></span>
+                    <span><strong>出生日期：{{ teacher.birth }}</strong></span>
+                </div>
+                <div class="intro">
+                    {{ teacher.intro }}
+                </div>
+                <div class="comment">
+                    <a href="/praise/?tno={{ teacher.no }}">好评：</a>&nbsp;&nbsp;(<strong>{{ teacher.good_count }}</strong>)
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/criticize/?tno={{ teacher.no }}">差评：</a>&nbsp;&nbsp;(<strong>{{ teacher.bad_count }}</strong>)
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <a href="/">返回首页</a>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $('.comment>a').on('click', (evt) => {
+            evt.preventDefault()
+            let url = $(evt.target).attr('href')
+            $.getJSON(url, (json) => {
+                if (json.code === 20000) {
+                        $(evt.target).next().text(json.count)
+                    }  else {
+                    alert(json.message)
+                    if (json.code === 20002) {
+                        // 把字符串处理成百分号编码
+                        let url = encodeURIComponent(location.pathname + location.search)
+                        location.href = '/login/?backurl=' + url
+                    }
+                }
+            })
+        })
+    </script>
+{#    <script>#}
+{#        // 拿到两个a标签#}
+{#        let anchors = document.querySelectorAll('.comment>a')#}
+{#        // 通过循环为a标签绑定点击事件#}
+{#        for(let i = 0; i < anchors.length; ++i) {#}
+{#            // 添加事件监听器（绑定事件回调函数）#}
+{#            anchors[i].addEventListener('click',(evt) => {#}
+{#                // 阻止事件默认行为（点击a标签不刷新页面）#}
+{#                evt.preventDefault()#}
+{#                // 获取异步请求的url地址#}
+{#                let url = evt.target.getAttribute('href')#}
+{#                // 想服务器发起异步请求 Promise对象#}
+{#                fetch(url).then(resp =>  resp.json()).then(json => {#}
+{#                    // 获取到服务器的json格式的数据， 对页面进行局部刷新#}
+{#                    if (json.code === 20000) {#}
+{#                        // 获取strong标签#}
+{#                        let strong = evt.target.nextElementSibling#}
+{#                        strong.textContent = json.count#}
+{#                    } else {#}
+{#                        alert(json.message)#}
+{#                    }#}
+{#                })#}
+{#            })#}
+{#        }#}
+{#    </script>#}
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/Normalize.css">
+    <link rel="stylesheet" href="../static/css/register.css">
+</head>
+<body>
+    <div id="container" class="w">
+        <div class="container">
+            <form action="/register/" method="post">
+                {% csrf_token %}
+                <img id="img1" src="../static/images/logo_03.png" Width="90">
+                <h1>用户注册</h1>
+                <fieldset>
+                    <legend>用户名</legend>
+                    <input type="text" name="username"  maxlength="20" required >
+                </fieldset>
+                <fieldset>
+                    <legend>设置登陆密码</legend>
+                    <input type="password" name="password" required>
+                </fieldset>
+                <fieldset>
+                    <legend>手机号</legend>
+                    <input type="text" name="tel" id="check_info1">
+                </fieldset>
+                <div class="agree">
+                    <input type="checkbox" name="agreement" id="checkbox">&nbsp;&nbsp;我已同意网站<a href="">用户协议及隐私政策</a>
+                </div>
+                <div class="hintc clearfix">
+                    <p class="hint fl">{{ hint }}</p>
+                </div>
+                <div class="login threebutton clearfix">
+                    <a class="fl" href="/login/">返回登录</a>
+                    <input type="submit" value="立即注册" onclick="on_change()">
+                </div>
+            </form>
+            <div class="register">
+                <a href="/login/">返回登录</a>
+            </div>
+            <div class="forget">
+                <a href="/">返回首页</a>
+            </div>
+    </div>
+    <script>
+        let checkbox = document.getElementById('checkbox')
+        function on_change() {
+            if (checkbox.checked) {
+                alert('注册成功，即将跳转登录页面...')
+            } else {
+                alert('请勾选用户协议!')
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

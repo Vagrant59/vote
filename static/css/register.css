@@ -1,0 +1,106 @@
+.container {
+    width: 900px;
+    margin: 0 auto;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+form {
+    width: 530px;
+    min-height: 500px;
+    margin: 0 auto;
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    position: relative;
+    background-color: #fff;
+}
+#img1 {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.verificationcode{
+    margin: 0 auto;
+    height: 100px;
+    width: 366px;
+    margin-top: 10px;
+}
+#code {
+    cursor: pointer;
+}
+.container h1 {
+    display: block;
+    margin-top: 180px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 24px;
+    height: 50px;
+    color: #202124;
+}
+.hintc {
+    margin: 0 auto;
+    height: 20px;
+    width: 366px;
+    margin-bottom: 10px;
+}
+.container p {
+    color: red;
+}
+.container fieldset {
+    margin: 0 auto;
+    height: 54px;
+    width: 366px;
+    border-radius: 5px;
+    border-color: #1a73e8;
+    color: #1a73e8;
+    margin-top: 10px;
+}
+.container fieldset legend {
+    margin-left: 10px;
+    padding: 0 5px;
+}
+.container fieldset input {
+    height: 10px;
+    width: 336px;
+    padding: 13px 15px;
+    background-color: #f6f6f6;
+    color: #202124;
+    font-size: 17px;
+}
+.agree {
+    height: 44px;
+    width: 366px;
+    margin: 0 auto;
+    margin-top: 40px;
+    font-size: 18px;
+    color: #1a73e8;
+}
+.agree a {
+    color: #1a73e8;
+    font-size: 18px;
+}
+.agree a:hover {
+    color: #093759;
+}
+.container .threebutton {
+    height: 44px;
+    width: 366px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+.container .threebutton a {
+    color: #1a73e8;
+    font-size: 17px;
+    line-height: 44px;
+    padding-right: 10px;
+}
+.container .threebutton input {
+    height: 44px;
+    width: 112px;
+    display: block;
+    float: right;
+    background-color: #1a73e8;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}

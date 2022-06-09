@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学科信息</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/Normalize.css">
+    <link rel="stylesheet" href="../static/css/subjects.css">
+</head>
+<body>
+    <div id="container clearfix">
+        <div class="user">
+            {% if request.session.userid %}
+                {{ request.session.username }}
+                <a href="/logout/">注销</a>
+            {% else %}
+                <a href="/login/">用户登录</a>
+            {% endif %}
+            <a href=/register/>快速注册</a>
+        </div>
+        <h1>佛山学院所有课程</h1>
+        <hr>
+        <div id="main">
+            {% for subject in subjects %}
+            <dl>
+                <dt>
+                    <a href="/teachers/?sno={{ subject.no }}">{{ subject.name }}</a>
+                    {% if subject.is_hot %}
+                    <img src="/static/images/hot-icon-small.png">
+                    {% endif %}
+                </dt>
+                <dd>
+                    {{ subject.intro }}
+                </dd>
+            </dl>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
